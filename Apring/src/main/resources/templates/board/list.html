@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+
+<!-- 사용자 css -->
+<th:block layout:fragment="css">
+    <style>
+        h1{
+            text-align: center;
+        }
+    </style>
+</th:block>
+
+<!-- 사용자 script -->
+<th:block layout:fragment="script">
+
+</th:block>
+
+<div layout:fragment="content">
+    <h1>게시판</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>글번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+            <th>수정일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="boardList : ${boardList}">
+            <td th:text="${boardList.bno}"></td>
+            <td th:text="${boardList.title}"></td>
+            <td th:text="${#temporals.format(boardList.regTime,'yyyy-MM-dd')}"></td>
+            <td th:text="${#temporals.format(boardList.updateTime,'yyyy-MM-dd')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
